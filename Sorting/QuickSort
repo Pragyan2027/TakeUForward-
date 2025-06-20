@@ -1,0 +1,45 @@
+class Solution {
+
+    static int partition(int[] nums, int low, int high) {
+        
+        
+        int pivot = nums[high];
+        int i = low - 1;
+
+        for (int j = low; j <= high - 1; j++) {
+            if (nums[j] < pivot) {
+                i++;
+                swap(nums, i, j);
+            }
+        }
+        
+        // Move pivot after smaller elements and
+        // return its position
+        swap(nums, i + 1, high);  
+        return i + 1;
+    }
+
+    // Swap function
+    static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+ private void quickSortHelper(int[] nums, int low, int high){
+
+        if(low < high){
+
+            int pivot = partition(nums , low , high);
+
+            quickSortHelper(nums, low , pivot - 1);
+
+            quickSortHelper(nums, pivot + 1, high);
+
+        }
+
+    }
+    public int[] quickSort(int[] nums) {
+        quickSortHelper(nums, 0, nums.length - 1);
+        return nums;
+    }
+    }
