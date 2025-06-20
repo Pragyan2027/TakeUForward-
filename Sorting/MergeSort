@@ -1,0 +1,90 @@
+class Solution {
+    public int[] mergeSort(int[] nums) {
+         if(nums.length==1){
+
+            return nums;
+
+        }
+        int l = nums.length%2==0 ? nums.length/2 : nums.length/2+1;
+
+        int[] arr1 = new int[l];
+
+        int[] arr2 = new int[nums.length/2];
+
+        if(l==nums.length/2){
+
+            for(int i =0;i<l;i++){
+
+                arr1[i] = nums[i];
+
+                arr2[i] = nums[l+i];
+
+            }
+
+        }
+
+        else{
+
+            for(int i=0;i<l;i++){
+
+                arr1[i] = nums[i];
+
+                if(l+i<nums.length){
+
+                    arr2[i] = nums[l+i];
+
+                }
+    }
+        }
+
+return merge(mergeSort(arr1),mergeSort(arr2));
+
+    }
+
+    static int[] merge(int[] arr1,int[] arr2){
+
+        int[] arr = new int[arr1.length+arr2.length];
+
+        int s=0;
+
+        int e=0;
+
+        for(int i =0;i<arr.length;i++){
+
+            if(s>arr1.length-1){
+
+                arr[i]=arr2[e];
+
+                e++;
+
+            }
+
+            else if(e>arr2.length-1){
+
+                arr[i]=arr1[s];
+
+                s++;
+
+            }
+
+            else if(arr1[s]<=arr2[e]){
+
+            arr[i]=arr1[s];
+
+            s++;
+
+            }
+
+            else{
+
+                arr[i]=arr2[e];
+
+                e++;
+
+            }
+
+        }
+
+        return arr;  
+    }
+}
