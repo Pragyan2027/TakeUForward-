@@ -1,0 +1,16 @@
+class Solution {
+    public int upperBound(int[] nums, int x) {
+        int n = nums.length;
+        // Iterate over each element
+        for (int i = 0; i < n; i++) {
+            /* Return the index if the 
+               element is greater than x */
+            if (nums[i] > x) {
+                return i;
+            }
+        }
+        /* If no element is greater 
+           than x, return n */
+        return n;
+    }
+}
