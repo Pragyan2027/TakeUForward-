@@ -1,0 +1,13 @@
+class Solution {
+    private int Count(int index , int sum , int[] nums){
+        if(sum == 0 ) return 1;
+
+        if(sum < 0 || index == nums.length) return 0;
+        return Count(index+1 , sum - nums[index] , nums) + Count(index + 1, sum, nums);
+    }
+    public int countSubsequenceWithTargetSum(int[] nums, int k) {
+        //your code goes here
+        return Count(0 , k , nums);
+
+    }
+}
